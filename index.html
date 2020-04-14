@@ -23,7 +23,11 @@
       
     <!-- Eigenes CSS -->  
     <link href="css/style.css" rel="stylesheet">
-	<script>
+	
+  </head>
+
+  <body>
+  <script>
 		self.addEventListener('install', event => {
 			console.log('Install event!');
 		});
@@ -33,10 +37,17 @@
 		self.addEventListener('fetch', event => {
 			console.log('Fetch intercepted for:', event.request.url);
 		});
+		if('serviceWorker' in navigator){
+			window.addEventListener('load',()=>{
+				navigator.serviceWorker.register('/sw.js')
+					.then(reg => {
+						console.log('Registered! ', reg);
+					}).catch(err => {
+						console.log('Registration failed:', err);
+					});
+				});
+			}
 	</script>
-  </head>
-
-  <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         
