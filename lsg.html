@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1> Bucheingabe </h1>
+<script>
+var buch_array = [];
+var titel; var verlag; var seiten; var autor;
+	
+	for (var i = 0; i < 3; i++) {
+		titel = prompt("Titel eingeben");
+		verlag = prompt("Verlag eingeben");
+		seiten = prompt("Seitenanzahl eingeben");
+		autor = prompt("Autor eingeben");
+		
+		buch_array.push({
+			Titel: titel,
+			Verlag: verlag,
+			Seitenanzahl: parseInt(seiten),
+			Autor: autor,
+			ausgeben: function() {
+				document.write("Titel: " + this.Titel +
+				"Verlag: " + this.Verlag +
+				"Seitenanzahl: " + this.Seitenanzahl +
+				"Autor: " + this.Autor "<br>");
+			}
+		});
+	}
+	for (var i = 0; i < 3; i++) {
+		buch_array[i].ausgeben();
+}
+</script>
+</body>
+<html>

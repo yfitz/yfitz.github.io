@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39">
+  <meta charset="utf-8">
+
+  <title>Kapitel 1 - Techniker Javascript Einführung</title>
+  <meta name="description" content="Kapitel 1 - Techniker Javascript Einführung">
+  <meta name="author" content="yfitz">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- For syntax highlighting -->
+  <!-- light editor --><link rel="stylesheet" href="lib/css/light.css">
+  <!-- dark editor -->
+  <!--<link rel="stylesheet" href="lib/css/dark.css">
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+  <link rel="stylesheet" href="plugin/accessibility-helper/css/accessibility-helper.css">-->
+  <!--If the query includes 'print-pdf', include the PDF print sheet -->
+  
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+        
+  <!-- If use the PDF print sheet so students can print slides-->
+  
+    <link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        
+  <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2>Einführung in JavaScript</h2><img src="images/javascript.png" alt="Javascript Logo" class="noborder" style=
+        "max-height:400px;">
+
+        <h3>Kapitel 1</h3>
+      </section>
+
+
+      <section>
+        <h3>Was ist JavaScript?</h3>
+
+        <p>JavaScript ist nicht Java</p>
+      
+        <p>JavaScript ist eine Sprache zur Clientseitigen Webprogrammierung</p><img src="images/client-server.png" alt=
+        "Laptop and server connected via the internet">
+
+        <p>JavaScript arbeitet mit HTML &amp; CSS</p>
+      </section>
+
+      <section>
+        <h3>Was ist JavaScript?</h3>
+
+        <ul>
+          <li>Entwickelt von Brendan Eich als "LiveScript" in 1995 und umbenannt in "JavaScript"</li>
+
+          <li>Standardiziert von <b>ECMAScript</b> Spezifikationen. <a href=
+          "http://www.ecma-international.org/ecma-262/5.1/">ES5</a> (in 2009)
+          </li>
+
+          <li>Eine <b>client-seitige Sprache</b>. Der Browser liest den Code und führt in direkt aus.</li>
+
+          <li>Interfaces mit <b>HTML</b> &amp; <b>CSS</b> lassen uns dynamische Webseiten entwickeln, die auf Benutzereingaben
+          reagieren.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Was kann JavaScript?</h3>
+
+        <p>Image lightboxes</p><a href="https://gyazo.com/01b0065c2feee682dbffe3d7bf4e5545"><img src=
+        "https://i.gyazo.com/01b0065c2feee682dbffe3d7bf4e5545.gif" alt="https://gyazo.com/01b0065c2feee682dbffe3d7bf4e5545"></a>
+      </section>
+
+      <section>
+        <h3>Was kann JavaScript?</h3>
+
+        <p>Fully featured web applications</p><a href="https://gyazo.com/1ea0791eece706f4ab9ff8213a4e1fbf"><img src=
+        "https://i.gyazo.com/1ea0791eece706f4ab9ff8213a4e1fbf.gif" alt="https://gyazo.com/1ea0791eece706f4ab9ff8213a4e1fbf"></a>
+      </section>
+
+      <section>
+        <h3>Was kann JavaScript?</h3>
+
+        <p>Benutzer Informationen speichern in <a href="https://en.wikipedia.org/wiki/HTTP_cookie">Cookies</a> oder in lokalen
+        Daten sogenannte: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">local
+        storage</a>.</p><a href="https://gyazo.com/56208a5722a6f7ab682c2baddbba8ce3"><img src=
+        "https://i.gyazo.com/56208a5722a6f7ab682c2baddbba8ce3.gif" alt="https://gyazo.com/56208a5722a6f7ab682c2baddbba8ce3"></a>
+      </section>
+
+      <section>
+        <h3>Was kann JavaScript?</h3>
+
+        <p>Interaktive Elemente wie Tabs, Sliders, usw.</p><a href="https://gyazo.com/4841d6f99367b28a1d6fca4395f408a2"><img src=
+        "https://i.gyazo.com/4841d6f99367b28a1d6fca4395f408a2.gif" alt="https://gyazo.com/4841d6f99367b28a1d6fca4395f408a2"></a>
+      </section>
+
+      <section>
+        <h3>Was kann JavaScript?</h3>
+
+        <p>Zeichnungen &amp; Animationen</p><a href="https://gyazo.com/6e183501f7ae5df7f07d37b9513ccfb9"><img src=
+        "https://i.gyazo.com/6e183501f7ae5df7f07d37b9513ccfb9.gif" alt="https://gyazo.com/6e183501f7ae5df7f07d37b9513ccfb9"></a>
+		<p><a href="https://youtu.be/dvG9FgbzK9Y">Roboter</a></p>
+      </section>
+
+      <section>
+        <h3>Script Tags</h3>
+
+        <p>JavaScript eingebettet in HTML. Ein <b>script tag</b> sagt dem Browser hier kommt Javascript Code</p>
+        <pre>
+<code class="html">&lt;script&gt;
+  JAVASCRIPT CODE KOMMT HIER HIN
+&lt;/script&gt;
+</code>
+</pre>
+
+        <h3>JavaScript Dateien</h3>
+
+        <p>Wie CSS, werden lange JavaScripte in eigene Dateien gespeichert.</p>
+        <pre>
+<code class="html">&lt;script src="path/to/file.js"&gt;&lt;/script&gt;
+</code>
+</pre>
+      </section>
+
+      <section>
+        <h3>Lasst uns entwickeln..</h3>
+
+        <p>Erzeuge eine neue HTML Datei mit folgende, Inhalt:</p>
+        <pre>
+<code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;This is my awesome JavaScript code.&lt;/p&gt;
+    &lt;script&gt;
+      alert('Hello World!');
+      console.log('Secret message');
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+      </section><!-- Programming -->
+
+
+      <section>
+        <h3>Konsole</h3>
+
+       
+      </section>
+
+      <section>
+        <h3>Konsole</h3>
+
+        <ul>
+          <li>Öffne die Konsole.</li>
+
+          <li>In Chrome, durch die Tastenkombination:
+
+            <ul>
+              <li>Mac: <strong>Command + Option + J</strong></li>
+
+              <li>Windows: <strong>Control + Shift + J</strong></li>
+            </ul>
+        </ul>
+
+      </section><!-- Using JavaScript -->
+
+      <section>
+        <h3>Anweisungen und Kommentare</h3>
+
+        <p>Jede Ausgabe auf Konsole in JS sieht wie folgt aus:</p>
+        <pre>
+<code class="javascript">/*
+Lange Kommentare 
+in mehreren Zeilen
+*/
+
+console.log('Hello World!'); // Kurze Kommentare bis Zeilenende</code>
+</pre>
+      </section>
+
+      <section>
+			<p style="text-decoration:underline;">Ausgaben auf dem Bildschirm:</p>
+			<img src="images/output.png" alt="Javascript Ausgabe" class="noborder" style="max-height:400px;">
+			
+      </section>
+
+      <section>
+        <h3>Aufgabe</h3><br>
+
+        <ul>
+          <li>Öffnen Sie die Console in ihrem Browser.</li>
+		  
+		   <li>Probiere die verschiedenen Ausgaben aus.</li>
+
+        </ul>
+      </section>
+	 
+	  <!-- Variables -->
+
+      <section>
+	   <p style="text-align:left;">Variable deklarieren (erzeugen) mit <strong>var</strong> oder <strong>let</strong></p>
+		<img src="images/variable.jpg" alt="Empty glass" class="noborder">
+
+        <pre>
+<code class="javascript">
+ var numberOfKittens;				\\ Deklaration
+ let numberOfDogs;
+ numberOfKittens = 5;				\\ Initialisierung</code>
+</pre>
+      </section>
+	  
+	  <section>
+		<h4> Was ist der Unterschied zwischen var und let?</h4> 
+		<pre>
+			<code class="javascript">
+function varTest() {
+	var x = 31;
+	if (true) {
+		var x = 71;  					
+		console.log(x);  			// 71
+	}
+	console.log(x);  				// 71
+}
+
+function letTest() {
+	let x = 31;
+	if (true) {
+		let x = 71;  					
+		console.log(x);  			// 71
+	}
+	console.log(x);  				// 31
+}
+</code>
+</pre>
+	<h4> Gültigkeitsbereich (Scope) von <code>let</code> ist die Funktion und von <code>var</code> ist der Block.</h4>
+	  </section>
+	  
+      <section>
+        <p>Variablen</p>
+        <ul>
+          <li>... ohne Wert sind <code>undefined</code>.</li>
+          <li>... können unterschiedliche Datentypen enthalten.</li>
+          <li>... können sich im Wert ändern.</li>
+        </ul>
+   
+        <p>Variablennamen</p>
+        <ul>
+          <li>... sind case-sensitive.</li>
+          <li>... beginnen mit einem Buchstaben,$ oder _ . </li>
+		  <li>... enthalten $, Ziffern, Buchstaben oder <code>_</code>.</li>
+        </ul>
+		
+		 <p>Vermeide <a href="https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words">reservierte Wörter.</a></p>
+          <p>Aussagekräftige Variablennamen sind wichtig für das Verständnis ihres Codes.</p>
+      </section>
+
+      <!-- Data Types-->
+
+      <section>
+        <h4>Sechs Datentypen sind primitives:</h4>        
+<pre>
+
+<code class="javascript">let userName = 'Jane Lane';</code> 		// String (Zeichenketten)
+<code class="javascript">let z = 123e-5;    </code> 			// Number (Integer und Float)
+<code class="javascript">let catsAreBest = true;</code> 			// Boolean
+<code class="javascript">let favoriteThings;</code> 			// Undefined (kein Wert zugewiesen)
+<code class="javascript">let goodPickupLines = null;</code> 		// Null (leerer Wert)
+<code class="javascript">let id = Symbol("id");</code>			//Symbol Datentyp
+
+Er kann als Schlüssel einer Eigenschaft eines Objekts verwendet werden. 
+In manchen Programmiersprachen werden Symbole auch Atoms genannt.
+
+<code class="javascript"> let kurs = Object(); </code> // ein Objekt von Typ Object
+</pre>
+<p>Zeichenketten in Zahlen umwandeln:</p>
+<pre>
+<code class="javascript">
+let string = "5.3.4abc";
+let ganzeZahl = parseInt(string);			// 5
+let floatZahl = parseFloat(string);		// 5.3
+</code>
+</pre>
+		<p> <code>NaN</code> = Not-A-Number (Kann nicht umgewandelt werden!) </p>
+      </section>
+
+      <section>
+        <h3>Arithmetische Operatoren</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Beispiel</th>
+
+              <th>Name</th>
+
+              <th>Ergebnis</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><code>-a</code></td>
+
+              <td>Negation</td>
+
+              <td>Gegenteil von <code>a</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>a + b</code></td>
+
+              <td>Addition</td>
+
+              <td>Summe <code>a</code> und <code>b</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>a - b</code></td>
+
+              <td>Subtraction</td>
+
+              <td>Differenz von <code>a</code> und <code>b</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>a * b</code></td>
+
+              <td>Multiplikation</td>
+
+              <td>Product von <code>a</code> und <code>b</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>a / b</code></td>
+
+              <td>Division</td>
+
+              <td>Quotient von <code>a</code> und <code>b</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>a % b</code></td>
+
+              <td>Modulus</td>
+
+              <td>Rest bei Division von <code>a</code> und <code>b</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>++a</code></td>
+
+              <td>Increment um 1</td>
+
+              <td>Summe von <code>a</code> und <code>1</code>.</td>
+            </tr>
+
+            <tr>
+              <td><code>a-=b</code></td>
+
+              <td>Differenz</td>
+
+              <td>Differenz von <code>a</code> und <code>b</code> a zugewiesen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section><!-- Strings -->
+
+      <section>
+        <h3>Strings</h3>
+
+        <p>Variablen können Zeichenketten(strings) enthalten. Die Zeichenketten stehen in einfachen oder doppelten Anführungszeichen.</p>
+        <pre>
+<code class="javascript">
+var hisName = 'Struppy';
+var herName = "Mausi";
+</code>
+</pre>
+
+        <p>Ein Anführungszeichen <b>escape</b> mit Backslash</p>
+        <pre>
+<code class="javascript">
+console.log('Ich ein Zeichen\' hier');
+</code>
+</pre>
+      </section>
+
+      <section>
+        <h3>Zeichenketten Operatoren</h3>
+
+        <p>Zeichenketten zusammenfügen mit a <code>+</code>, der concatenation Operator.</p>
+        <pre>
+<code class="javascript">var kittensName = 'Fluffy ';
+var fullName = kittensName + 'McDougle';
+console.log(fullName); // Outputs 'Fluffy McDougle'
+</code>
+</pre>
+
+        <p>An Zeichenkette am Ende anfügen mit <code>+=</code>.</p>
+        <pre>
+<code class="javascript">var kittensName = 'Admiral ';
+kittensName += 'Snuggles';
+console.log(kittensName); // Outputs 'Admiral Snuggles'
+</code>
+</pre>
+      </section>
+
+      <section>
+        <h3>Kombiniere Zeichenketten und Zahlen</h3>
+
+        <p>In Konkatenation von Zeichenketten und Zahlen, werden Zahlen wie Zeichenketten behandelt.</p>
+        <pre>
+<code class="javascript">var numberOfFruit = 6;
+var typeOfFruit = 'bananas';
+var allTheFruit = 'I have ' + numberOfFruit + ' ' + typeOfFruit + '!';
+console.log(allTheFruit);
+</code>
+</pre>
+      </section>
+
+      <section>
+        <h3>Aufgabe</h3>
+        <p>Schreibe ein Programm, welches das Trinkgeld in einem Lokal berechnet. Es soll:</p>
+        <ul>
+          <li>Eine Variable für den Rechnungsbetrag <b>pre_tip</b> und eine <b>tip_prozent</b>.</li>
+
+          <li>Berechne den kompleten Rechnungsbetrag.</li>
+
+          <li>Ausgabe sowas wie "Komplete Rechnungsbetrag, einschließlich Trinkgeld, ist 14.50Euro".</li>
+
+          <li>Bonus: Verwende <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed"
+            target="_blank"><code>toFixed()</code></a> um auf zwei Dezimalstellen zu runden.
+          </li>
+		  <li> Probieren Sie let und var; Was passiert ohne Variable Deklaration mit 'use strict'; ?</li>
+        </ul>
+      </section>
+	    <section>
+        <h3>Diskussion?</h3>
+        <p>Was ist die Gefahr wenn man keine Deklaration der Variable braucht?</p>
+        <p> Deshalb auch wenn es anders geht -> Empfehlung:  <br/>'use strict;'</p>
+      </section>
+	  <!-- Final slides-->
+
+      <section>
+        <h3>Referenzen</h3>
+
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a>, from the
+            Mozilla Developers Network.
+          </li>
+
+          <li>
+            <a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a>, mit interactiven Javascript Beispiele.
+          </li>
+
+          <li>
+            <a href="http://jsforcats.com/">JavaScript For Cats,</a> Basics für cats.
+          </li>
+		  
+		  <li>
+            <a href=" https://www.w3schools.com/js/"> W3Schools JavaScript,</a> Basics und TryIt Beispiele.
+          </li>
+		 
+        </ul>
+      </section>
+
+      <section>
+        <h3>Fragen?</h3>
+		<ol>
+        <li> Wie wird Javascript in HTML eingebunden und interpretiert? </li>
+		<li> Welche Funktionen erzeugen eine Bildschirmausgabe?  </li>
+		<li> Welche zwei Kommentare gibt es? </li>
+		 <li> Variable deklarieren bzw. initialisieren heisst...? Was ist in Javascript anders? </li>
+		 <li> Unterschied zwischen String, Integer oder Float? </li>
+		 <li> Variablennamen müssen mit ... beginnen und aus ... bestehen. </li>
+		 <li> Wozu dienen parseInt und parseFloat ? </li>
+		 <li> Operation + bezüglich Strings und Zahlen?</li>
+		</ol>
+		<a href="JS.html" target="_blank">Anfang</a>
+      </section>--&gt;
+    </div>
+  </div>
+  <script src="js/reveal.js"></script>
+        <script>
+            Reveal.initialize({
+
+	// Display controls in the bottom right corner
+	controls: true,
+
+	// Display a presentation progress bar
+	progress: true,
+
+	// Display the page number of the current slide
+	slideNumber: true,
+
+	// Push each slide change to the browser history
+	history: true,
+
+	// Enable keyboard shortcuts for navigation
+	keyboard: true,
+
+	// Enable the slide overview mode
+	overview: true,
+
+	// Vertical centering of slides
+	center: true,
+
+	// Enables touch navigation on devices with touch input
+	touch: true,
+
+	// Loop the presentation
+	loop: false,
+
+	// Change the presentation direction to be RTL
+	rtl: false,
+
+	// Randomizes the order of slides each time the presentation loads
+	shuffle: false,
+
+	// Turns fragments on and off globally
+	fragments: true,
+
+	// Flags if the presentation is running in an embedded mode,
+	// i.e. contained within a limited portion of the screen
+	embedded: false,
+
+	// Flags if we should show a help overlay when the questionmark
+	// key is pressed
+	help: true,
+
+	// Flags if speaker notes should be visible to all viewers
+	showNotes: false,
+
+	// Number of milliseconds between automatically proceeding to the
+	// next slide, disabled when set to 0, this value can be overwritten
+	// by using a data-autoslide attribute on your slides
+	autoSlide: 0,
+
+	// Stop auto-sliding after user input
+	autoSlideStoppable: true,
+
+	// Use this method for navigation when auto-sliding
+	autoSlideMethod: Reveal.navigateNext,
+
+	// Enable slide navigation via mouse wheel
+	mouseWheel: false,
+
+	// Hides the address bar on mobile devices
+	hideAddressBar: true,
+
+	// Opens links in an iframe preview overlay
+	previewLinks: false,
+
+	// Transition style
+	transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+	// Transition speed
+	transitionSpeed: 'default', // default/fast/slow
+
+	// Transition style for full page slide backgrounds
+	backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+	// Number of slides away from the current that are visible
+	viewDistance: 3,
+
+	// Parallax background image
+	parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+	// Parallax background size
+	parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+	// Number of pixels to move the parallax background per slide
+	// - Calculated automatically unless specified
+	// - Set to 0 to disable movement along an axis
+	parallaxBackgroundHorizontal: null,
+	parallaxBackgroundVertical: null
+});
+        </script>
+</body>
+</html>

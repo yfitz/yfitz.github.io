@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Page</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <h1>JavaScript Test Site</h1>
+            </div>
+            <div id="main">
+                <p>Einfaches HTML-Formular</p>
+				
+                <form id="simpleForm">
+                    <label for="inputValue">Input:</label> <input type="text" id="inputValue"><br/>
+                    <input type="submit" value="Submit" id="simpleSubmit">
+                </form>
+				
+                <p>Ein paar Ergebnisse aus diesem Javascript Kurs <a href="https://yfitz.github.io" id="gdiLink">Technikerschule Blog</a>.</p>
+                <div id="resultsBox"></div>
+                <p>Kleines Bild einer Schildkroete:</p>
+                <img src="class4/class4/turtle.jpg" id="turtlePic" alt="Turtle" onmouseover="myAlert()">
+            </div>           
+            <div id="footer">
+                 <p name="meiner">This work is licensed under no license.</p>
+            </div>
+        </div>
+		
+    </body>
+	<!-- Kommentar -->
+	<script> 
+	    function myAlert(event){
+			alert('Hallo Hier!');
+			var bild = document.getElementById("turtlePic");
+			bild.removeEventListener("mouseover", myAlert());
+		}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+		// 1. Submitbutton Text ändern
+		var submit = document.getElementById("simpleSubmit"); // Submitbutton Zugriff
+	
+		submit.value = "Absenden";		// oder 	submit.setAttribute("value", "Absenden");
+		
+		// 2. Rahmen um einen div-Container
+		document.getElementById("header").style.border = "solid 3px red";
+		
+		// 3. Text des Paragraphen im footer ändern
+		
+			// 1.Möglichkeit: 
+			//var paragraph = document.getElementsByTagName("p")[3];
+			//paragraph.innerHTML = "Neuer Text";
+		
+			// 2. Möglichkeit:
+			//var paragraph2 = document.querySelector("#footer p");
+			//paragraph2.innerHTML = "Neuer Text";
+		
+			// 3. Möglichkeit: Lösung mit name= meiner im Paragraph
+			//var footer document.getElementById("footer");
+			//footer.meiner.innerHTML = "Neuer Text";
+		
+			// 4. Möglichkeit 
+			var footer = document.getElementById("footer");
+		
+			var para = footer.getElementsByTagName("p")[0];
+		
+			para.innerHTML = "Neuer Text";
+		
+		
+		//Aufgabe: Neuer Paragraph in einem div-Container erzeugen
+		
+		var resultsDiv = document.getElementById('footer');
+
+		var newParagraph = document.createElement('p');
+
+		var paragraphText = document.createTextNode("Neuer Paragraph");
+        
+		newParagraph.appendChild(paragraphText);
+
+		resultsDiv.appendChild(newParagraph);
+		
+	</script>
+    
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39">
+  <meta charset="utf-8">
+
+  <title>Kapitel 5 - Javascript more an</title>
+  <meta name="description" content="Kapitel 4 - Techniker Javascript Einführung">
+  <meta name="author" content="yfitz">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css"><!-- For syntax highlighting -->
+  <!-- light editor -->
+  <link rel="stylesheet" href="lib/css/light.css"><!-- dark editor -->
+  <!--<link rel="stylesheet" href="lib/css/dark.css">
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+  <link rel="stylesheet" href="plugin/accessibility-helper/css/accessibility-helper.css">-->
+  <!--If the query includes 'print-pdf', include the PDF print sheet -->
+
+  <script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+  </script><!-- If use the PDF print sheet so students can print slides-->
+  <link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+  <link rel="icon" type="image/x-icon" href="favicon.ico"><!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+	  <section>
+			<h2>JavaScript DOM und Events</h2><img src="images/javascript.png" alt="Javascript Logo" class="noborder" style=
+			"max-height:400px;">
+
+			<h3>Kapitel 5</h3>
+      </section>
+
+        <!--Beispiel Formular-->
+          <section>   
+            <h3>Beispiel Formular</h3>
+<pre><code class="html">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="JavaScript"&gt;
+&lt;!--
+function pruefung(formular)
+{
+   if(formular.eingabe.value.length < 5)
+   {
+      alert("Bitte mindestens 5 Zeichen!")
+      return false
+   }
+   return true
+}
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...
+&lt;form action="..." onSubmit="return pruefung(this)"&gt;
+&lt;input type="text" name="eingabe"&gt;
+&lt;input type="submit"&gt;
+&lt;/form&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+          </section>
+
+          <section>
+            <h3>Objekttyp Form </h3>
+            <p style="font-size:20px;">repräsentiert ein komplettes Formular aus dem HTML-Dokument. Für jedes so definierte Formular existiert ein Eintrag in dem Array document.forms. So besitzt das Objekt document auch eine Eigenschaft mit diesem Namen.
+
+			Ein Objekt des Typs Form hat jeweils eine Eigenschaft, die mit einem entsprechenden Attribut des HTML-Elements fomr korrespondiert. Die wichtigsten sind hier:</p>
+            <img src="images/objectForm.png" alt="Simple DOM Tree"/>
+          </section>
+
+        <!--Accessing the DOM-->
+          <section>
+            <h3>DOM Zugriff</h3>
+            <p>Ihr Browser lädt die Weseite in ein <code>document</code> Objekt,
+			welches als Zugang zur Webseite dient.</p><br>
+			<p>Durch Verwendung des <code>document</code> kann man:</p><br>
+			<ol>
+				<li>Den Inhalt der Webseite beliebig verändern.</li>
+				<li>Eine HTML-Seite komplett neu erzeugen.</li>
+				<li>Auf existierende HTML-Elemente im DOM-Tree zugreifen und diese verändern.</li>
+			</ol>
+          </section>
+
+          <section>
+           
+            <h3>DOM Zugriff per Id</h3>
+            <p>Man kann die <code>id</code> verwenden um auf ein HTML-Element zuzugreifen mit folgenden Methode:</p>
+<pre><code class="javascript"> Syntax: var p = document.getElementById(id);
+</code></pre>
+          <p>Beispiel:</p>
+<pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+          <p>Wir würden folgendes tun:</p>
+<pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+</code></pre>
+          </section>
+
+          <section>
+            <h3>DOM Zugriff per Tag Name</h3>
+            <p>Man kann auf HTML-Elemente zugreifen über den <code>tag</code> durch folgende Methode:</p>
+<pre><code class="javascript">Syntax: var liste = document.getElementsByTagName(tagName);
+</code></pre>
+            <p>Beispiel: Um folgendes zu finden:</p>
+<pre><code class="html">&lt;ul&gt;
+  &lt;li&gt;Daisy&lt;/li&gt;
+  &lt;li&gt;Tulip&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            <p>Verwenden wir:</p>
+<pre><code class="javascript">var listItems = document.getElementsByTagName('li');
+
+for (var i = 0; i &lt; listItems.length; i++) {
+  var listItem = listItems[i];
+}
+</code></pre>
+          </section>
+
+          <section>
+            <h3>DOM Zugriff: HTML 5</h3>
+            <p>In neueren Browsern kann man auch folgende Methoden verwenden: <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName">getElementsByClassName</a></code>, <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">querySelector</a></code>, and <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll">querySelectorAll</a></code>.</p><br>
+            <p>Available in <a href="http://caniuse.com/#search=getElementsByClassName">IE9+, FF3.6+, Chrome 17+, Safari 5+</a>:</p>
+<pre><code class="javascript">Syntax: var liste = document.getElementsByClassName(className);
+</code></pre>
+          <p>Available in <a href="http://caniuse.com/#search=querySelectorAll">IE8+, FF3.6+, Chrome 17+, Safari 5+</a>:</p>
+<pre><code class="javascript">Syntax: var element = document.querySelector(cssQuery);
+var liste = document.querySelectorAll(cssQuery);
+</code></pre>
+			<p> Dabei ist 'cssQuery' ein CSS-Selektor.(z.B. "#footer p" entspr. Paragraphen im Tag mit id footer</p>
+          </section>
+
+          <section>
+            <h3>getElement vs. getElements</h3>
+            <p>Jede Methode die mit <code>getElement</code> beginnt, wird ein <strong>einziges</strong> Element liefern.</p>
+<pre><code class="javascript">Syntax: var element = document.getElementById('uniqueID'); 
+</code></pre><br>
+          <p>Jede Methode die mit <code>getElements</code> beginnt, wird ein <strong>array</strong> von Elementen liefern. Um ein Element zu bekommen muss man Klammern [] verwenden.</p>
+<pre><code class="javascript">var liste = document.getElementsByTagName('p'); 
+
+var specificParagraph = document.getElementsByTagName('p')[2];
+</code></pre>
+          </section>
+
+        <!--Manipulating the DOM-->
+
+          <section>
+            <h3>DOM Elemente: Attribute</h3>
+            <p>Man kann auf DOM-Elemente zugreifen und diese verändern unter Verwendung der Punkt-Notation.</p>
+            <p>Um folgendes Element zu ändern:</p>
+<pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+            <p>.. werden wir das 'src' Attribut wie folgt verändern:</p>
+<pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+
+// liefert den Wert des Attributes
+imgKitten.src
+
+// setzt das Attribut
+imgKitten.src = 'http://placekitten.com/g/600/500';</code></pre>
+          </section>
+
+          <section>
+            <h3>DOM Elemente: Zugriff und Verändern von Attributen</h3>
+            <p>Man kann  <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute">getAttribute</a></code> oder <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute">setAttribute</a></code> verwenden.</p>
+<pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+          <p>Attribute verändern wie folgt:</p>
+<pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+
+// liefert Attributwert
+imgKitten.getAttribute('src');
+
+// setzt Attributswert
+imgKitten.setAttribute('src', 'http://placekitten.com/g/600/500');</code></pre>
+          </section>
+
+          <section>
+            <h3>DOM Elemente: Styles</h3>
+            <p>Um folgendes CSS zu erzeugen ..</p>
+<pre><code class="css">body {
+  color: red;
+}
+</code></pre>
+          <p> .. führt man in JavaScript folgendes aus:</p>
+<pre><code class="javascript">var pageBody = document.getElementsByTagName('body')[0];
+
+pageBody.style.color = 'red';</code></pre>
+          </section>
+
+          <section>
+            <h3>Weitere Style Beispiele...</h3>
+            <p> Die Daumenregel in Javascript ist den CSS style "<code>-</code>" in  <a href="https://en.wikipedia.org/wiki/CamelCase">camelCase</a> umzuwandeln.</p><br>
+            <p>Um folgendes CSS umzusetzen..</p>
+<pre><code class="css">body {
+  background-color: pink;
+  padding-top: 10px;
+}
+</code></pre>
+          <p>.. verwende in JavaScript folgendes</p>
+<pre><code class="javascript">var pageBody = document.getElementsByTagName('body')[0]
+
+pageBody.style.backgroundColor = 'pink';
+
+pageBody.style.paddingTop = '10px';
+</code></pre>
+          </section>
+		  
+		  <section>
+			<p> Beispiel: Zugriff auf Elemente eines Formulars </p>
+			<pre><code class="html">
+&lt;form name="Person"&gt;
+	&lt;input type="text" name="Vorname" value="" size=20&gt;
+	&lt;input type="text" name="Nachname" value="" size=20&gt;
+	&lt;input type="radio" name="Geschlecht"&gt; weiblich
+	&lt;input type="radio" name="Geschlecht"&gt; männlich
+	&lt;input type="radio" name="Geschlecht" checked="checked"&gt; keine Angabe
+	&lt;input type="button" value="Anzeigen" name="Anzeige"&gt;
+&lt;/form&gt;
+			</code></pre>
+			<p> Im Formular kann über den Namen zugegriffen werden z.B. </p>
+			<p style="font-size:25px;"> Vorname, Nachname, Anzeigen, Radiobutton </p>
+			<ul style="font-size:25px;">
+				<li>window.document.Person.Vorname	</li>
+				<li>window.document.Person.Nachname	</li>
+				<li>window.document.Person.Anzeigen	]</li>
+				<li>window.document.Person.Geschlecht[0] .. [2] </li>
+			</ul>
+
+		  </section>
+		  
+		  <section>
+		  <p> Was macht folgende Javascript Funktion ?</p>
+		  <pre><code class="javascript">	 
+function zeigen()
+{
+   var Anrede = '';
+   if (window.document.Person.Geschlecht[0].checked){
+		Anrede = 'Frau ';
+   }
+   else {
+        if (window.document.Person.Geschlecht[1].checked){
+            Anrede = 'Herr ';
+        }
+   }
+   var Name = window.document.Person.Vorname.value +
+              ' ' + window.document.Person.Nachname.value;
+   var Nachricht = 'Sie sind\n' + Anrede + ' ' + Name;
+   alert(Nachricht);
+} 
+
+</code></pre>
+</section>
+
+		  
+		  <!--Manipulating the DOM-->
+          <section>
+            <h3>DOM innerHTML</h3>
+            <p>Jedes DOM Element hat eine <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML">innerHTML</a></code> Eigenschaft mit dem HTML und Inhalt dessen Kindelemente. Man kann diese Eigenschaft verwenden für den Zugriff oder die Manipulation des HTML Elements.</p>
+            <p>Zum Beispiel, kann man den kompletten body überschreiben:</p>
+  <pre><code class="javascript">var pageBody = document.getElementsByTagName('body')[0];
+
+pageBody.innerHTML = '&lt;h1&gt;Oh Noes!&lt;/h1&gt;&lt;p&gt;I changed the whole page!&lt;/p&gt;'</code></pre>
+            <p>Oder einfach Inhalt anhängen:</p>
+  <pre><code class="javascript">pageBody.innerHTML += '...just adding this at the end of the page.';</code></pre>
+          </section>
+
+          <section>
+            <h3>DOM innerHTML </h3>
+            <p>Man kann auch den Inhalt eines speziellen Element ansprechen </p><br>
+            <p>Um Inhalt in den Paragraph zu stecken:</p>
+  <pre><code class="html">&lt;p id="warning"&gt;&lt;/p&gt;</code></pre>
+            <p>Ansprechen des Elements und modifizieren:</p>
+  <pre><code class="javascript">var warningParagraph = document.getElementById('warning');
+
+warningParagraph.innerHTML = 'Danger Will Robinson!';</code></pre>
+          </section>
+
+          <section>
+			<h3>Aufgabe - los geht's!</h3>
+			<p>Erzeuge eine einfache HTML Seite oder <a href="class4.zip"> verwende diesen Code.</a>.</p><br>
+			<ol>
+				<li>Verändere Attribute den Wert vom value des input Feldes auf den neuen Wert 'Absenden' </li><br>
+				<li>Ergänze einen roten Rahmen für den ersten div-Container (wrapper)</li><br>
+				<li>Verändere den Text des Paragraphen im Footer beliebig </li>
+			</ol>
+          </section>
+
+          <section>
+            <h3>Erzeugung neuer HTML Elemente</h3>
+            <p>Methode um neue Elemente (Tags) zu erzeugen:</p>
+			<pre><code class="javascript">
+	var e = document.createElement(tagName);
+			</code></pre>
+  
+			<p>Methode um neuen Text zu erzeugen:</p>
+			<pre><code class="javascript">
+	var e = document.createTextNode(text);
+			</code></pre>
+
+			<p>Methode um neue Elemente in HTML einzufügen:</p>
+			<pre><code class="javascript">
+	element.appendChild(e);
+			</code></pre>
+
+          </section>
+
+          <section>
+            <h3>Beispiel: Neue Elemente erzeugen</h3>
+	<pre><code class="javascript">
+	// Hole den body Tag 
+	var <strong>pageBody</strong> = document.getElementsByTagName('body')[0];
+
+	// Erzeuge ein Image Tag mit Attribute 
+	var <strong>newImg</strong> = document.createElement('img');
+	<strong>newImg</strong>.src = 'http://placekitten.com/g/500/200';
+	<strong>newImg</strong>.style.border = '1px solid black';
+
+	// Füge Image Tag in den body ein
+	<strong>pageBody</strong>.appendChild(<strong>newImg</strong>);
+
+	// Erzeuge einen Paragraphen mit Text
+	var <strong>newParagraph</strong>  = document.createElement('p');
+	var <strong>paragraphText</strong> = document.createTextNode('Squee!');
+	<strong>newParagraph</strong>.appendChild(<strong>paragraphText</strong>);
+	
+	// Füge Paragraph Tag in den body ein
+	<strong>pageBody</strong>.appendChild(<strong>newParagraph</strong>);
+	</code></pre>
+            </section>
+
+            <section>
+            <h3>Auf geht's</h3>
+			<ul> 
+				<li>Nehmen Sie die HTML-Seite aus der vorherigen Übung </li><br>
+				<li>Erzeugen Sie einen neuen Paragraphen mit dem Text 'Neuer Paragraph'</li><br>
+				<li>Hängen Sie diesen an einen <code> div</code>-Container</li>
+			</ul>
+          </section>
+
+      <!-- Events -->
+        <section>
+          <h3>Events</h3>
+          <img src="images/magician.jpg" alt="Lego Magician" class="noborder"/>
+          <p class="credit">Photo: <a href="https://flic.kr/p/9hBrtv" target="_blank">Magician</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/" target="_blank">cc</a></p>
+        </section>
+
+        <section>
+          <h3>Events</h3>
+          <p>Ein <strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events">Event</a></strong> ist ein Objekt, welches verschickt wird, wenn Aktionen auf der Webseite passieren - User Interaktionen. </p><br>
+          <p>Beispielweise, JavaScript erzeugt einen Event, wenn ein User auf ein Element klickt.</p>
+<pre><code class="javascript">element.addEventListener('click', function(event) {
+  // Programmteil, der beim Klick ausgeführt wird.
+});
+</code></pre>
+        </section>
+
+        <section>
+          <h3>Eventtypen</h3>
+          <p>Es gibt viele <a href="https://developer.mozilla.org/en-US/docs/Web/Events">verschiedene Events</a>. Die gängigsten Events sind die folgenden:</p>
+          <ul>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/click">click</a>:</strong> Tritt ein wenn der User auf das Element klickt.</li>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/mouseover">mouseover</a>:</strong> Tritt ein wenn Zeiger auf dieses Element bewegt wird.</li>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/mouseout">mouseout</a>:</strong> Tritt ein wenn Zeiger von diesem Element weg bewegt wird.</li>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/keyup">keyup</a>:</strong> Tritt ein wenn eine Taste losgelassen wird.</li>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/load_(ProgressEvent)">load</a>:</strong> Tritt ein wenn document geladen wird.</li>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/focus">focus</a>:</strong> Tritt ein wenn ein Element den Fokus bekommt.</li>
+            <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur">blur</a>:</strong> Tritt ein wenn ein Element den Fokus verliert.</li>
+          </ul>
+        </section>
+
+        <section>
+			<p>Funktionsaufruf direkt in HTML für folgenden HTML-Tag</p>
+			<pre><code class="html">
+	&lt;button id="myBtn" onclick="sayHi()"&gt;Click Me!&lt;/button&gt;
+			</code></pre>
+			<p>Funktionsdeklaration </p>
+			<pre><code class="javascript">
+	function sayHi (event) {
+		alert('Hi!');
+	};
+			</code></pre>
+		</section>
+		<section>
+			<p>Folgender HTML-Tag soll EventListener erhalten</p>
+			<pre><code class="html">
+	&lt;button id="myBtn"&gt;Click Me!&lt;/button&gt;
+			</code></pre>
+			<p>EventListener anfügen  </p>
+			<pre><code class="javascript">
+	var button = document.getElementById("myBtn");
+	button.<strong>addEventListener</strong>("click", function (event) {
+		alert("Hi!");
+	});
+			</code></pre>
+			<p>oder so</p>
+			<pre><code class="javascript">
+	var button = document.getElementById("myBtn");
+	var sayHi = function (event) {
+		alert("Hi!");
+	};
+	button.addEventListener("click", sayHi);</code></pre>
+        </section>
+<section>
+			<h3>currentTarget</h3>
+			<p><code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget">currentTarget</a></code> von dem Element referenziert das Element des Eventlistener.</p>
+			<pre><code class="html">
+	&lt;button id="myBtn"&gt;Click Me!&lt;/a&gt;
+			</code></pre>
+			<p>Dieser Programmcode ergänzt Style und Text an den angeklickten Button.</p>
+			<pre><code class="javascript">
+	myButton = document.getElementById("myBtn");
+
+	myButton.addEventListener("click", function(event) {
+		btn = event.currentTarget;
+		btn.style.backgroundColor = 'red';
+		btn.innerHTML = 'Clicked!';
+	});
+			</code></pre>
+        </section>
+
+        <section>
+			<h3>Aufgabe</h3>
+			<p>Verwende wieder den Code von der vorherigen Übung.</p><br>
+			<p>Erzeuge zwei EventListener für das Bild:</p>
+			<ul>
+				<li>Lasse ein Popup erscheinen nach <code>mouseover</code> Event </li><br>
+				<li>Lasse das Bild sich verändern wenn es angeklickt wird. </li><br>
+			</ul>
+        </section>
+
+        <section>
+			<h3>Forms</h3>
+			<pre><code class="html">
+  &lt;form id="userForm"&gt;
+	&lt;label for="name"&gt;First Name:&lt;/label&gt;
+	&lt;input type="text" id="firstName"&gt;
+	&lt;input type="radio" name="married" value="Yes" checked &gt; Yes
+	&lt;input type="radio" name="married" value="No" &gt; No
+	&lt;input type="submit" id="submitBtn" value="Submit" &gt;
+  &lt;/form&gt;
+			</code></pre>
+			<p>Form Daten ermitteln mit der <code>value</code> Methode.</p>
+			<pre><code class="javascript">
+	var name = document.getElementById('firstName').value;
+
+	console.log(name);
+			</code></pre>
+        </section>
+
+        <section>
+			<p>Radio bzw Submit Werte (values)</p>
+          
+			<pre><code class="javascript">
+	var radios = document.getElementsByName('married');
+	for (var i = 0; i &lt; radios.length; i++) {
+
+	    if (radios[i].checked) {	// Ist dieser ausgewählt?
+	        var radioButtonValue = radios[i].value;  
+	        break;				
+	    }
+	}
+			</code></pre>
+       
+			<p>Um die Werte der Form beim submit zu ermitteln, verhindere die Default Aktion!</p>
+			<pre><code class="javascript">
+	var submitButton = document.getElementById('submitBtn');
+	submitButton.addEventListener("click", function(event) {
+	    event.preventDefault();
+
+	    var name = document.getElementById('firstName').value;
+	    console.log(name);
+	})
+			</code></pre>
+        </section>
+
+        <section>
+			<h3>Entwickle es!</h3>
+			<p>Sammle den Input Wert der Übungs Seite ein. </p>
+			<p>Verwende diesen Wert als Ausgabe im Popup </p>
+		  
+        </section>
+
+
+        <section>
+          <h3>Referenzen</h3>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a>, from the Mozilla Developers Network.</li>
+            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a>, with interactive JavaScript lessons to help you review.</li>
+            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> has a lot more information abut drawing and animations.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Fragen?</h2>
+		  <a href="http://www.javascript-workshop.de/buch/03.html" target="_blank">Übung</a>
+		  <a href="JS.html" target="_blank">Anfang</a>
+        </section>
+    </div>
+<script src="js/reveal.js"></script> 
+<script>
+    Reveal.initialize({
+
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: Reveal.navigateNext,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Hides the address bar on mobile devices
+        hideAddressBar: true,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Parallax background image
+        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+        // Parallax background size
+        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null
+  });
+  </script>
+</body>
+</html>
