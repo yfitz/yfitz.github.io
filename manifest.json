@@ -1,0 +1,7 @@
+{
+  "name": "My WEb App",
+  "short_name": "Web App",
+  "lang": "de-DE",
+  "start_url": "/yfitz.github.io",
+  "display": "standalone"
+}
