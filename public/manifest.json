@@ -4,4 +4,9 @@
   "lang": "de-DE",
   "start_url": "https://yfitz.github.io",
   "display": "standalone"
+  {
+      "src": "images/favicon.ico",
+      "sizes": "1024x1024",
+      "type": "image/ico"
+    }
 }
