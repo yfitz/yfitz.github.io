@@ -1,15 +1,15 @@
 {
-  "name": "My Web App",
   "short_name": "yfitzapp",
-  "lang": "de-DE",
-  "theme_color": "#ff584f",
-  "background_color": "#ffffff",
-  "start_url": "/index.html",
-  "display": "standalone",
+  "name": "My Web App",
   "icons": [
-  {
+    {
       "src": "images/favicon.ico",
       "sizes": "1024x1024",
       "type": "image/ico"
-  }]
+    }
+  ],
+  "theme_color": "#ff584f",
+  "background_color": "#ffffff",
+  "start_url": "/index.html",
+  "display": "standalone"
 }
