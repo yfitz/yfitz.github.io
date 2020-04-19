@@ -6,7 +6,12 @@
       "src": "images/favicon.ico",
       "sizes": "1024x1024",
       "type": "image/ico"
-    }
+    },
+    {
+      "src": "images/javascript.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+	}
   ],
   "theme_color": "#ff584f",
   "background_color": "#ffffff",
