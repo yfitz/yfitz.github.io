@@ -3,22 +3,22 @@
   "name": "My Web App",
   "icons": [
    {
-      "src": "images/no-java.png",
+      "src": "/images/no-java.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "images/javascript.png",
+      "src": "/images/javascript.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "images/favicon.ico",
+      "src": "/images/favicon.ico",
       "sizes": "1024x1024",
       "type": "image/ico"
     },
     {
-      "src": "images/javascript.png",
+      "src": "/images/javascript.png",
       "sizes": "1024x1024",
       "type": "image/png"
 	}
