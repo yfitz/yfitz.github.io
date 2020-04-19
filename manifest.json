@@ -1,7 +1,7 @@
 {
-  "name": "My WEb App",
-  "short_name": "Web App",
+  "name": "My Web App",
+  "short_name": "yfitzapp",
   "lang": "de-DE",
-  "start_url": "/yfitz.github.io",
+  "start_url": "https://yfitz.github.io",
   "display": "standalone"
 }
